@@ -8,5 +8,5 @@ An example project of how to use Stripe with GraphQL and Typescript
 4. How to handle free trials
 5. Nav bar
 6. Edit credit card or cancel subscription
-7. How can a cancelled user resubscribe
+7. Cancel or resubscribe
 8. Styled Components
