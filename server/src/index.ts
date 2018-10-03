@@ -27,7 +27,13 @@ const startServer = async () => {
     })
   );
 
-  server.applyMiddleware({ app }); // app is from an existing express app
+  server.applyMiddleware({
+    app,
+    cors: {
+      credentials: true,
+      origin: "http://localhost:3000"
+    }
+  }); // app is from an existing express app
 
   app.listen({ port: 4000 }, () =>
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
