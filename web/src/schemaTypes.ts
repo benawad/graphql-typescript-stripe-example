@@ -2,6 +2,26 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateSubscriptionMutation
+// ====================================================
+
+export interface CreateSubscriptionMutation_createSubcription {
+  id: string;
+  email: string;
+}
+
+export interface CreateSubscriptionMutation {
+  createSubcription: CreateSubscriptionMutation_createSubcription | null;
+}
+
+export interface CreateSubscriptionMutationVariables {
+  source: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: LoginMutation
 // ====================================================
 

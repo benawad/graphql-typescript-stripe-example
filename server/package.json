@@ -8,6 +8,7 @@
     "@types/express-session": "^1.15.11",
     "@types/graphql": "^14.0.1",
     "@types/node": "^10.11.3",
+    "@types/stripe": "^6.0.0",
     "nodemon": "^1.18.4",
     "ts-node": "7.0.1",
     "typescript": "3.1.1"
@@ -15,11 +16,13 @@
   "dependencies": {
     "apollo-server-express": "^2.1.0",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "graphql": "^14.0.2",
     "pg": "^7.3.0",
     "reflect-metadata": "^0.1.10",
+    "stripe": "^6.12.1",
     "typeorm": "0.2.7"
   },
   "scripts": {
