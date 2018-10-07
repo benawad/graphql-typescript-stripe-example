@@ -5,6 +5,7 @@ export const typeDefs = gql`
     id: ID!
     email: String!
     type: String!
+    ccLast4: String
   }
 
   type Query {
@@ -14,6 +15,7 @@ export const typeDefs = gql`
   type Mutation {
     register(email: String!, password: String!): Boolean!
     login(email: String!, password: String!): User
-    createSubcription(source: String!): User
+    createSubcription(source: String!, ccLast4: String!): User
+    changeCreditCard(source: String!, ccLast4: String!): User
   }
 `;
