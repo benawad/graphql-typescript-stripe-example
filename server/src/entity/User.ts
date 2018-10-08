@@ -9,13 +9,13 @@ export class User extends BaseEntity {
   email: string;
 
   @Column("text", { nullable: true })
-  stripeId: string;
+  stripeId: string | null;
 
   @Column("text", { default: "free-trial" })
   type: string;
 
   @Column("text", { nullable: true })
-  ccLast4: string;
+  ccLast4: string | null;
 
   @Column("text")
   password: string;
