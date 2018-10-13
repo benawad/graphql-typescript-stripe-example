@@ -18,5 +18,6 @@ export const typeDefs = gql`
     createSubcription(source: String!, ccLast4: String!): User
     changeCreditCard(source: String!, ccLast4: String!): User
     cancelSubscription: User
+    logout: Boolean!
   }
 `;

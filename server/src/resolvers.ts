@@ -15,6 +15,11 @@ export const resolvers: IResolvers = {
     }
   },
   Mutation: {
+    logout: async (_, __, { req, res }) => {
+      await new Promise(res => req.session.destroy(() => res()));
+      res.clearCookie("connect.sid");
+      return true;
+    },
     register: async (_, { email, password }) => {
       const hashedPassword = await bcrypt.hash(password, 10);
       await User.create({

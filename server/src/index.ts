@@ -13,7 +13,7 @@ const startServer = async () => {
     // These will be defined for both new or existing servers
     typeDefs,
     resolvers,
-    context: ({ req }: any) => ({ req })
+    context: ({ req, res }: any) => ({ req, res })
   });
 
   await createConnection();
