@@ -1,5 +1,5 @@
 import { IResolvers } from "graphql-tools";
-import * as bcrypt from "bcryptjs";
+import * as argon2 from "argon2";
 
 import { User } from "./entity/User";
 import { stripe } from "./stripe";
@@ -21,7 +21,7 @@ export const resolvers: IResolvers = {
       return true;
     },
     register: async (_, { email, password }) => {
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedPassword = await argon2.hash(password);
       await User.create({
         email,
         password: hashedPassword
@@ -35,7 +35,7 @@ export const resolvers: IResolvers = {
         return null;
       }
 
-      const valid = await bcrypt.compare(password, user.password);
+      const valid = await argon2.verify(user.password, password);
       if (!valid) {
         return null;
       }
