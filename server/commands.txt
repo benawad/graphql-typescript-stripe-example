@@ -9,3 +9,6 @@ psql stripe-example -h localhost -U postgres
 
 docker exec -it bdca2b8c09b7 psql -U postgres stripe-example
 
+1. docker-compose.yml
+2. Retry logic
+3. up/down

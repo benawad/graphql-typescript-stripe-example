@@ -16,7 +16,19 @@ const startServer = async () => {
     context: ({ req, res }: any) => ({ req, res })
   });
 
-  await createConnection();
+  let retries = 5;
+  while (retries) {
+    try {
+      await createConnection();
+      break;
+    } catch (err) {
+      console.log(err);
+      retries -= 1;
+      console.log(`retries left: ${retries}`);
+      // wait 5 seconds
+      await new Promise(res => setTimeout(res, 5000));
+    }
+  }
 
   const app = express();
 
