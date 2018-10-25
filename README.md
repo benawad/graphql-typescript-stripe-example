@@ -18,7 +18,46 @@ YouTube Playlist: https://www.youtube.com/playlist?list=PLN3n1USn4xllF5t1GZhEwFQ
 
 ## Getting started
 
-Ensure Docker client is up and running locally
+- Ensure Docker client is up and running locally
+- Ensure you have a Stripe account or create one
+
+### Stripe account
+
+- If you don't have a Stripe account: [Register](https://dashboard.stripe.com/register)
+- If you have a Stripe account: [Login](https://dashboard.stripe.com/login)
+
+You might well get a confirmation email. Be sure to click the _confirmation link_
+
+Then you might well need to activate your account by providing additional information [here](https://dashboard.stripe.com/account/details)
+
+Go to [developers section](https://dashboard.stripe.com/test/developers)
+Optionally upgrade the API version.
+
+Go to [API keys](https://dashboard.stripe.com/account/apikeys)
+Click display secret key and make it available to your app in a safe way.
+
+Add the keys and other configurations to your app via Enviroment variables:
+
+- `process.env.STRIPE_SECRET`
+- `process.env.PLAN`
+- `process.env.REACT_APP_STRIPE_PUBLISHABLE` stripe key
+- `process.env.PUBLIC_URL`
+
+A good option is to use [dotenv](https://github.com/motdotla/dotenv) which is also used in this project by default:
+
+- `.env.local`
+- `.env.development.local`
+- `.env.test.local`
+- `.env.production.local`
+
+For plans, see [products-and-plans](https://stripe.com/docs/billing/subscriptions/products-and-plans)
+
+```txt
+STRIPE_SECRET=abc123
+PLAN=plan123
+PUBLIC_URL=https://xyz.com
+REACT_APP_STRIPE_PUBLISHABLE=key123
+```
 
 ### Server
 
