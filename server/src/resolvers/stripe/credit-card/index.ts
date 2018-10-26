@@ -1,1 +1,1 @@
-export { change } from "./change";
+export { change } from "./change/change";

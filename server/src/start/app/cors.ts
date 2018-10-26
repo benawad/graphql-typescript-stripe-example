@@ -4,7 +4,7 @@ export const addCors = (app: any) => {
     app,
     cors: {
       credentials: true,
-      origin: "http://localhost:3000"
+      origin: "http://localhost:3000" // TODO: read from process env
     }
   }); // app is from an existing express app
 };

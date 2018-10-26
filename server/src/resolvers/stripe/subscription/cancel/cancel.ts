@@ -1,6 +1,6 @@
-import { User } from "../../User";
-import { findUser } from "../common";
-import { stripe } from "../stripe";
+import { User } from "../../../User";
+import { findUser } from "../../common";
+import { stripe } from "../../stripe";
 
 const deleteCard = async (user: any, stripeCustomer: any) => {
   await stripe.customers.deleteCard(

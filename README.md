@@ -132,3 +132,9 @@ You can now view web in the browser.
 Note that the development build is not optimized.
 To create a production build, use yarn build.
 ```
+
+## Testing Stripe checkout
+
+See [Stripe Testing](https://stripe.com/docs/testing)
+
+Go to [Testing cards](https://stripe.com/docs/testing#cards) and use the cards there on the Stripe checkout page for the React app.

@@ -12,24 +12,28 @@ const registerMutation = gql`
   }
 `;
 
+const createForm = (history: any) => {
+  return (mutate: any) => (
+    <Form
+      buttonText="register"
+      onSubmit={async data => {
+        const response = await mutate({
+          variables: data
+        });
+        console.log(response);
+        history.push("/login");
+      }}
+    />
+  );
+};
+
 export class RegisterView extends React.PureComponent<RouteComponentProps<{}>> {
   render() {
     return (
       <Mutation<RegisterMutation, RegisterMutationVariables>
         mutation={registerMutation}
       >
-        {mutate => (
-          <Form
-            buttonText="register"
-            onSubmit={async data => {
-              const response = await mutate({
-                variables: data
-              });
-              console.log(response);
-              this.props.history.push("/login");
-            }}
-          />
-        )}
+        {createForm(this.props.history)}
       </Mutation>
     );
   }

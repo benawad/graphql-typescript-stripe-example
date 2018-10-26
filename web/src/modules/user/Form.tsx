@@ -12,6 +12,24 @@ interface Props {
   buttonText: string;
 }
 
+const createInput = ({
+  name,
+  label,
+  type,
+  placeholder,
+  value,
+  onChange
+}: any) => (
+  <Input
+    label={name || label}
+    type={type || "text"}
+    name={name}
+    placeholder={placeholder}
+    value={value}
+    onChange={onChange}
+  />
+);
+
 export class Form extends React.PureComponent<Props, State> {
   state = {
     email: "",
@@ -27,6 +45,22 @@ export class Form extends React.PureComponent<Props, State> {
 
   render() {
     const { password, email } = this.state;
+    const emailInput = createInput({
+      name: "email",
+      value: email,
+      onChange: this.handleChange
+    });
+    const passwordInput = createInput({
+      name: "password",
+      type: "password",
+      value: password,
+      onChange: this.handleChange
+    });
+    const submitButton = (
+      <RedButton onClick={() => this.props.onSubmit(this.state)}>
+        {this.props.buttonText}
+      </RedButton>
+    );
 
     return (
       <div
@@ -37,27 +71,7 @@ export class Form extends React.PureComponent<Props, State> {
           justifyContent: "center"
         }}
       >
-        <div>
-          <Input
-            label="EMAIL"
-            type="text"
-            name="email"
-            placeholder="Enter your email address..."
-            value={email}
-            onChange={this.handleChange}
-          />
-          <Input
-            label="PASSWORD"
-            type="password"
-            name="password"
-            placeholder="Enter your password..."
-            value={password}
-            onChange={this.handleChange}
-          />
-          <RedButton onClick={() => this.props.onSubmit(this.state)}>
-            {this.props.buttonText}
-          </RedButton>
-        </div>
+        <div>{[emailInput, passwordInput, submitButton]}</div>
       </div>
     );
   }
