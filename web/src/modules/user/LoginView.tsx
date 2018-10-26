@@ -18,36 +18,44 @@ const loginMutation = gql`
   ${userFragment}
 `;
 
+const updater = () => {
+  return (cache: any, { data }: any) => {
+    if (!data || !data.login) {
+      return;
+    }
+
+    cache.writeQuery({
+      query: meQuery,
+      data: { me: data.login }
+    });
+  };
+};
+
+const createForm = (history: any) => {
+  return (mutate: any, { client }: any) => (
+    <Form
+      buttonText="login"
+      onSubmit={async data => {
+        // optional reset cache
+        await client.resetStore();
+        const response = await mutate({
+          variables: data
+        });
+        console.log(response);
+        history.push("/account");
+      }}
+    />
+  );
+};
+
 export class LoginView extends React.PureComponent<RouteComponentProps<{}>> {
   render() {
     return (
       <Mutation<LoginMutation, LoginMutationVariables>
-        update={(cache, { data }) => {
-          if (!data || !data.login) {
-            return;
-          }
-
-          cache.writeQuery({
-            query: meQuery,
-            data: { me: data.login }
-          });
-        }}
+        update={updater()}
         mutation={loginMutation}
       >
-        {(mutate, { client }) => (
-          <Form
-            buttonText="login"
-            onSubmit={async data => {
-              // optional reset cache
-              await client.resetStore();
-              const response = await mutate({
-                variables: data
-              });
-              console.log(response);
-              this.props.history.push("/account");
-            }}
-          />
-        )}
+        {createForm(this.props.history)}
       </Mutation>
     );
   }

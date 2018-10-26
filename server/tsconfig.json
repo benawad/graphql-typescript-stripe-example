@@ -5,10 +5,10 @@
     "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
     "sourceMap": true,
     "outDir": "./dist",
+    "rootDir": ".",
     "moduleResolution": "node",
-
     "removeComments": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
