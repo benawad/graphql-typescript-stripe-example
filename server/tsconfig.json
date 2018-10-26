@@ -7,7 +7,6 @@
     "outDir": "./dist",
     "rootDir": ".",
     "moduleResolution": "node",
-
     "removeComments": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
