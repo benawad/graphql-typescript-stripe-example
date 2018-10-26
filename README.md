@@ -50,14 +50,22 @@ A good option is to use [dotenv](https://github.com/motdotla/dotenv) which is al
 - `.env.test.local`
 - `.env.production.local`
 
-For plans, see [products-and-plans](https://stripe.com/docs/billing/subscriptions/products-and-plans)
-
 ```txt
-STRIPE_SECRET=abc123
-PLAN=plan123
+STRIPE_SECRET=sk_test_abc123
+PLAN=plan_123xyz
 PUBLIC_URL=https://xyz.com
 REACT_APP_STRIPE_PUBLISHABLE=key123
 ```
+
+`STRIPE_SECRET` should be prefixed with `sk_test` while testing (ie during development).
+
+## Products and Plans
+
+For plans, see [products-and-plans](https://stripe.com/docs/billing/subscriptions/products-and-plans)
+
+You will need to [Create a product](https://dashboard.stripe.com/subscriptions/products) as [shown here](http://www.youtube.com/watch?v=Yr6HOyWUCgE&t=15m1s) in [part 3](https://www.youtube.com/watch?v=Yr6HOyWUCgE&list=PLN3n1USn4xllF5t1GZhEwFQNDnStgupdB&index=5) of the video series.
+
+When your product has been created, Stripe will assign it a product ID. Now click the first plan under the `Pricing plans` card (next one down) and you will be show the Plan ID for that product plan. Note: The plan ID should be prefixed with `plan_`
 
 ### Server
 
