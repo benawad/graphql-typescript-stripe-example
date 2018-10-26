@@ -1,6 +1,7 @@
-import { stripe } from "../stripe";
-import { User } from "../User";
+import { stripe } from "../../stripe";
+import { User } from "../../User";
 
+// TODO: extract into smaller functions for composition and more readable code!
 export const create = async (
   _: any,
   { source, ccLast4 }: any,
