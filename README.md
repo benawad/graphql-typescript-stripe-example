@@ -39,11 +39,13 @@ Click display secret key and make it available to your app in a safe way.
 Add the keys and other configurations to your app via Enviroment variables:
 
 - `process.env.STRIPE_SECRET`
-- `process.env.PLAN`
+- `process.env.PLAN` product plan ID
 - `process.env.REACT_APP_STRIPE_PUBLISHABLE` stripe key
 - `process.env.PUBLIC_URL`
 
-A good option is to use [dotenv](https://github.com/motdotla/dotenv) which is also used in this project by default:
+A good option for handling env variables is to use [dotenv](https://github.com/motdotla/dotenv) which is used in this project by default.
+
+You can use different `.env` files to target specific environments:
 
 - `.env.local`
 - `.env.development.local`
@@ -59,13 +61,7 @@ REACT_APP_STRIPE_PUBLISHABLE=key123
 
 `STRIPE_SECRET` should be prefixed with `sk_test` while testing (ie during development).
 
-## Products and Plans
-
-For plans, see [products-and-plans](https://stripe.com/docs/billing/subscriptions/products-and-plans)
-
-You will need to [Create a product](https://dashboard.stripe.com/subscriptions/products) as [shown here](http://www.youtube.com/watch?v=Yr6HOyWUCgE&t=15m1s) in [part 3](https://www.youtube.com/watch?v=Yr6HOyWUCgE&list=PLN3n1USn4xllF5t1GZhEwFQNDnStgupdB&index=5) of the video series.
-
-When your product has been created, Stripe will assign it a product ID. Now click the first plan under the `Pricing plans` card (next one down) and you will be show the Plan ID for that product plan. Note: The plan ID should be prefixed with `plan_`
+See [Products and Plans](#products-and-plans) below for how to get the plan ID.
 
 ### Server
 
@@ -118,7 +114,7 @@ So you will have to create and push your own image ;) (see video tutorial)
 - prepare
 - start
 
-####Prepare web app
+#### Prepare web app
 
 ```
 $ cd ..
@@ -146,3 +142,17 @@ To create a production build, use yarn build.
 See [Stripe Testing](https://stripe.com/docs/testing)
 
 Go to [Testing cards](https://stripe.com/docs/testing#cards) and use the cards there on the Stripe checkout page for the React app.
+
+## Products and Plans
+
+For plans, see [products-and-plans](https://stripe.com/docs/billing/subscriptions/products-and-plans)
+
+You will need to [Create a product](https://dashboard.stripe.com/subscriptions/products) as [shown here](http://www.youtube.com/watch?v=Yr6HOyWUCgE&t=15m1s) in [part 3](https://www.youtube.com/watch?v=Yr6HOyWUCgE&list=PLN3n1USn4xllF5t1GZhEwFQNDnStgupdB&index=5) of the video series.
+
+When your product has been created, Stripe will assign it a product ID. Now click the first plan under the `Pricing plans` card (next one down) and you will be show the Plan ID for that product plan. Note: The plan ID should be prefixed with `plan_`
+
+## Subscriptions and Customers
+
+As you create subscriptions, keep track of them on Stripe on the [Test subscriptions](https://dashboard.stripe.com/test/subscriptions) page
+
+For the Customers (Users), check the [Test customers](https://dashboard.stripe.com/test/customers) page
