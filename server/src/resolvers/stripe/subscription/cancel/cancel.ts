@@ -1,4 +1,4 @@
-import { User } from "../../../User";
+import { getUser } from "../../user";
 import { findUser } from "../../common";
 import { stripe } from "../../stripe";
 
@@ -29,7 +29,7 @@ const retrieveStripeCustomer = async (user: any) => {
 };
 
 export const cancel = async (_: any, __: any, { req }: any) => {
-  const user = await findUser(req, User);
+  const user = await findUser(req, getUser);
   const stripeCustomer = await retrieveStripeCustomer(user);
   const subscription = getCustomerSubscription(stripeCustomer);
   await deleteSubscription(subscription);

@@ -1,3 +1,3 @@
 export const error = (msg: string) => {
-  throw new Error();
+  throw new Error(msg);
 };

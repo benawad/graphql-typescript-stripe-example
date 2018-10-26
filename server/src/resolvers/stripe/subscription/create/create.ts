@@ -1,5 +1,5 @@
 import { stripe } from "../../stripe";
-import { User } from "../../User";
+import { getUser } from "../../user";
 import { findUser } from "../../common";
 
 const stripeIdFromCustomer = async (
@@ -55,7 +55,7 @@ export const create = async (
   { source, ccLast4 }: any,
   { req }: any
 ) => {
-  const user = await findUser(req, User);
+  const user = await findUser(req, getUser);
   let { stripeId } = user;
   stripeId = stripeId
     ? await stripeIdFromCustomer(user, source)

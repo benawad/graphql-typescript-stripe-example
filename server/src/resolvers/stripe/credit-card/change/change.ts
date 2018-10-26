@@ -1,6 +1,6 @@
 import { stripe } from "../../stripe";
-import { User } from "../../User";
 import { findPaidUser } from "../../common/user";
+import { getUser } from "../../user";
 
 const updateCustomer = async (stripeId: string, source: any) => {
   await stripe.customers.update(stripeId, { source });
@@ -17,7 +17,7 @@ export const change = async (
   { source, ccLast4 }: any,
   { req }: any
 ) => {
-  const user = await findPaidUser(req, User);
+  const user = await findPaidUser(req, getUser);
   await updateCustomer(user.stripeId, source);
   return updateUser(user, ccLast4);
 };

@@ -1,14 +1,18 @@
 import { validSession, error } from ".";
+import { GetUserFn } from "../user";
 
-export const findUser = async (req: any, User: any) => {
+export const findUser = async (req: any, getUser: GetUserFn) => {
   const session = validSession(req);
   const { userId } = session;
-  const user = await User.findOne(userId);
+  const user = await getUser(userId);
   return validatedUser(user);
 };
 
-export const findPaidUser = async (req: any, User: any): Promise<any> => {
-  return validatedPaidUser(await findUser(req, User));
+export const findPaidUser = async (
+  req: any,
+  getUser: GetUserFn
+): Promise<any> => {
+  return validatedPaidUser(await findUser(req, getUser));
 };
 
 export const validatedUser = (user: any) => {
