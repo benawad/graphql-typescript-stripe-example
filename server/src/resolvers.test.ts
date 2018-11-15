@@ -48,7 +48,7 @@ describe("resolvers", () => {
 
     const registerResponse = await graphqlTestCall(registerMutation, {
       email: testUser.email,
-      password: testUser.email
+      password: testUser.password
     });
 
     expect(registerResponse).toEqual({ data: { register: true } });
@@ -59,7 +59,7 @@ describe("resolvers", () => {
 
     const loginResponse = await graphqlTestCall(loginMutation, {
       email: testUser.email,
-      password: testUser.email
+      password: testUser.password
     });
 
     expect(loginResponse).toEqual({
