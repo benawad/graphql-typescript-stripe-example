@@ -32,7 +32,9 @@ export class Account extends React.PureComponent {
           // if (data.me.type === 'paid')
           return (
             <div>
-              <div>your current last 4 digits: {data.me.ccLast4}</div>
+              <div data-testid="cc-number">
+                your current last 4 digits: {data.me.ccLast4}
+              </div>
               <ChangeCreditCard />
               <CancelSubscription />
             </div>
