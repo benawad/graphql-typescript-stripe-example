@@ -14,18 +14,27 @@ const startServer = async () => {
 
   const app = express();
 
-  app.use(
-    session({
-      secret: "asdjlfkaasdfkjlads",
-      resave: false,
-      saveUninitialized: false
-    })
-  );
+  const sessionMiddleware = session({
+    secret: "asdjlfkaasdfkjlads",
+    resave: false,
+    saveUninitialized: false
+  });
+
+  app.use(sessionMiddleware);
 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req, res }: any) => ({ req, res })
+    context: ({ req, res, connection }: any) => ({ req, res, connection }),
+    subscriptions: {
+      onConnect: (_, ws: any) => {
+        return new Promise(res =>
+          sessionMiddleware(ws.upgradeReq, {} as any, () => {
+            res({ req: ws.upgradeReq });
+          })
+        );
+      }
+    }
   });
 
   server.applyMiddleware({

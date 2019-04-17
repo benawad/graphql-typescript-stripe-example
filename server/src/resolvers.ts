@@ -10,7 +10,13 @@ const NEW_BOOK = "NEW_BOOK";
 export const resolvers: IResolvers = {
   Subscription: {
     newBook: {
-      subscribe: () => pubsub.asyncIterator([NEW_BOOK])
+      subscribe: (_, __, { connection }) => {
+        if (!connection.context.req.session.userId) {
+          throw new Error("not authed");
+        }
+
+        return pubsub.asyncIterator([NEW_BOOK]);
+      }
     }
   },
   Query: {
