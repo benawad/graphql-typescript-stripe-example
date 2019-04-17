@@ -4,18 +4,12 @@ import { createConnection } from "typeorm";
 import { ApolloServer } from "apollo-server-express";
 import * as express from "express";
 import * as session from "express-session";
+import * as http from "http";
 
 import { typeDefs } from "./typeDefs";
 import { resolvers } from "./resolvers";
 
 const startServer = async () => {
-  const server = new ApolloServer({
-    // These will be defined for both new or existing servers
-    typeDefs,
-    resolvers,
-    context: ({ req, res }: any) => ({ req, res })
-  });
-
   await createConnection();
 
   const app = express();
@@ -28,6 +22,12 @@ const startServer = async () => {
     })
   );
 
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: ({ req, res }: any) => ({ req, res })
+  });
+
   server.applyMiddleware({
     app,
     cors: {
@@ -36,7 +36,10 @@ const startServer = async () => {
     }
   }); // app is from an existing express app
 
-  app.listen({ port: 4000 }, () =>
+  const httpServer = http.createServer(app);
+  server.installSubscriptionHandlers(httpServer);
+
+  httpServer.listen({ port: 4000 }, () =>
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
   );
 };

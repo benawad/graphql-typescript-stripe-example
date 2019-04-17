@@ -2,8 +2,17 @@ import { IResolvers } from "graphql-tools";
 import * as bcrypt from "bcryptjs";
 
 import { User } from "./entity/User";
+import { Book } from "./entity/Book";
+import { pubsub } from "./pubsub";
+
+const NEW_BOOK = "NEW_BOOK";
 
 export const resolvers: IResolvers = {
+  Subscription: {
+    newBook: {
+      subscribe: () => pubsub.asyncIterator([NEW_BOOK])
+    }
+  },
   Query: {
     me: (_, __, { req }) => {
       if (!req.session.userId) {
@@ -42,6 +51,17 @@ export const resolvers: IResolvers = {
       req.session.userId = user.id;
 
       return user;
+    },
+    createBook: async (_, { name }, { req }) => {
+      if (!req.session.userId) {
+        throw new Error("not authenticated");
+      }
+
+      const book = await Book.create({ name }).save();
+
+      pubsub.publish(NEW_BOOK, { newBook: book });
+
+      return book;
     }
   }
 };
