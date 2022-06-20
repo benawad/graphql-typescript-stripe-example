@@ -6,7 +6,7 @@ YouTube Playlist: https://www.youtube.com/playlist?list=PLN3n1USn4xllF5t1GZhEwFQ
 0. Architecture
 1. Server
 2. Frontend
-3. Stripe checkout and sign user up for subcription
+3. Stripe checkout and sign user up for subscription
 4. How to handle free trials
 5. Nav bar
 6. Change credit card
@@ -15,3 +15,4 @@ YouTube Playlist: https://www.youtube.com/playlist?list=PLN3n1USn4xllF5t1GZhEwFQ
 
 
 ![stripe-diagram](https://raw.githubusercontent.com/benawad/graphql-typescript-stripe-example/master/stripe-diagram.png)
+
